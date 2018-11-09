@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SMSForm from './SMSForm'
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
+          {/* <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <form onSubmit={this.handleSubmit}>
@@ -50,7 +51,8 @@ class App extends Component {
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
+          </a> */}
+          <SMSForm />
         </header>
       </div>
     );
