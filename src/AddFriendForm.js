@@ -28,7 +28,7 @@ export default class CreateFriend extends Component {
 		  friends: [...this.state.friends, friend]
 	  })
   }
-
+ 
   handleChange (evt) {
     this.setState({
       [evt.target.name]: evt.target.value
