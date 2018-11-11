@@ -1,0 +1,33 @@
+
+> react-express-starter@0.1.0 dev /home/connie/Stackathon/finalfriendreminder/FriendReminder
+> run-p server start
+
+
+> react-express-starter@0.1.0 server /home/connie/Stackathon/finalfriendreminder/FriendReminder
+> node-env-run server --exec nodemon | pino-colada
+
+
+> react-express-starter@0.1.0 start /home/connie/Stackathon/finalfriendreminder/FriendReminder
+> react-scripts start
+
+[33m[nodemon] 1.18.4[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node /home/connie/Stackathon/finalfriendreminder/FriendReminder/server`[39m
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+Starting the development server...
+
+Failed to compile.
+
+./src/Results.js
+Module not found: Can't resolve 'react-bootstrap-table' in '/home/connie/Stackathon/finalfriendreminder/FriendReminder/src'
+Compiling...
+Failed to compile.
+
+./src/Results.js
+Module not found: Can't resolve 'react-bootstrap-table' in '/home/connie/Stackathon/finalfriendreminder/FriendReminder/src'
+Compiling...
+Compiled successfully!
+Proxy error: Could not proxy request /api/friends from localhost:3000 to http://localhost:3001.
+See https://nodejs.org/api/errors.html#errors_common_system_errors for more information (ECONNREFUSED).
+

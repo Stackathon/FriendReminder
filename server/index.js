@@ -4,70 +4,20 @@ const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const db = require('./db/db')
-const {Friend, FriendResponse} = require('./db')
+const {FriendResponse} = require('./db')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use(pino);
 
-const client = require('twilio')(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-);
+app.use('/api', require('./api'))
 
-app.get('/api/greeting', (req, res) => {
-  const name = req.query.name || 'World';
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
-});
-
-app.post('/api/messages', (req, res) => {
-  res.header('Content-Type', 'application/json');
-  const numbers = req.body
-  const body = 'Are you free this weekend? Reply Y or N'
-  Promise.all(
-    numbers.map(number => {
-      return client.messages.create({
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: number,
-      body: body
-      });
-    })
-  )
-    .then(() => {
-      console.log('Messages sent!');
-      res.send(JSON.stringify({ success: true }));
-    })
-    .catch(err => {
-      console.log(err);
-      res.send(JSON.stringify({ success: false }));
-    });
-})
-
-app.get('/api/friends', async (req, res, next) => {
-  try {
-    const friends = await Friend.findAll()
-    res.status(200).json(friends)
-  }
-  catch (err) {
-    next(err)
-  }
-})
-
-app.post('/api/friends', async (req, res, next) => {
-  try {
-    const newFriend = await Friend.create({
-      name: req.body.name,
-      phoneNumber: req.body.phoneNumber,
-      group: req.body.group
-    })
-    res.status(201).json(newFriend)
-  }
-  catch (err) {
-    next(err)
-  }
-})
+// app.get('/api/greeting', (req, res) => {
+//   const name = req.query.name || 'World';
+//   res.setHeader('Content-Type', 'application/json');
+//   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
+// });
 
 app.post('/sms', (req, res, next) => {
   const twiml = new MessagingResponse();
