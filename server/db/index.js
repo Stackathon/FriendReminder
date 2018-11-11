@@ -5,11 +5,11 @@ const Friend = db.define('friend', {
     name: {
       type: Sequelize.STRING
     },
-    phone: {
+    phoneNumber: {
       type: Sequelize.STRING
     },
-    content: {
-      type: Sequelize.TEXT
+    group: {
+      type: Sequelize.STRING
     },
   });
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SMSForm from './SMSForm'
+import AddFriendForm from './AddFriendForm'
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
           >
             Learn React
           </a> */}
+          <AddFriendForm />
           <SMSForm />
         </header>
       </div>
