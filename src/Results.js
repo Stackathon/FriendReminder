@@ -12,7 +12,7 @@ const friends = [
 export default class SelectFilterWithDefaultValue extends React.Component {
   render() {
     return (
-      <BootstrapTable data={ friends }>
+      <BootstrapTable data={ friends } bordered >
           <TableHeaderColumn dataField='name' isKey={ true }>Name</TableHeaderColumn>
           <TableHeaderColumn dataField='phone'>Phone</TableHeaderColumn>        
           <TableHeaderColumn 

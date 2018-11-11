@@ -54,9 +54,8 @@ class App extends Component {
           >
             Learn React
           </a> */}
-          
           <AddFriendForm />
-          <SMSForm />
+          <div><SMSForm /></div>
           <SelectFilterWithDefaultValue />
         </header>
       </div>

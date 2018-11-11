@@ -16,11 +16,21 @@ const client = require('twilio')(
   process.env.TWILIO_AUTH_TOKEN
 );
 
-app.get('/api/greeting', (req, res) => {
-  const name = req.query.name || 'World';
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
-});
+// app.get('/api/greeting', (req, res) => {
+//   const name = req.query.name || 'World';
+//   res.setHeader('Content-Type', 'application/json');
+//   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
+// });
+
+app.get('/api/friends', async (req, res, next) => {
+  try {
+    const friends = await Friend.findAll()
+    res.status(200).json(friends)
+  }
+  catch (err) {
+    next(err)
+  }
+})
 
 app.post('/api/messages', (req, res) => {
   res.header('Content-Type', 'application/json');
@@ -43,16 +53,6 @@ app.post('/api/messages', (req, res) => {
       console.log(err);
       res.send(JSON.stringify({ success: false }));
     });
-})
-
-app.get('/api/friends', async (req, res, next) => {
-  try {
-    const friends = await Friend.findAll()
-    res.status(200).json(friends)
-  }
-  catch (err) {
-    next(err)
-  }
 })
 
 app.post('/api/friends', async (req, res, next) => {
