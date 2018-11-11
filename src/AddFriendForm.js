@@ -28,16 +28,16 @@ export default class CreateFriend extends Component {
 		  friends: [...this.state.friends, friend]
 	  })
   }
- 
-  handleChange (evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
-  }
 
   handleSelect (evt) {
     this.setState({
       group: evt.target.value
+    })
+  }
+
+  handleChange (evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
     })
   }
 
@@ -60,10 +60,9 @@ export default class CreateFriend extends Component {
   }
 
   render () {
-    //const isEnabled = this.state.name && this.state.phoneNumber
+    
     return (
         <div>
-           {/* && this.state.group */}
           <Form inline onSubmit={this.handleSubmit}>  
               <FormGroup>
                 <Label for="name" hidden>Name</Label>
