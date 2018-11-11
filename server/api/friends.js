@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Friend} = require('../db')
+const {Friend} = require('../db/')
 
 // GET /api/friends
 router.get('/', async (req, res, next) => {
@@ -26,3 +26,5 @@ router.post('/', async (req, res, next) => {
         next(err)
     }
 })
+
+module.exports = router

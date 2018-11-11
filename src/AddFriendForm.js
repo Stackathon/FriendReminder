@@ -9,11 +9,12 @@ export default class CreateFriend extends Component {
         friends: [],
         name: '',
         phoneNumber: '',
-        // group: ''
+        group: ''
 	    }
     this.addFriend = this.addFriend.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   async componentDidMount () {
@@ -34,6 +35,12 @@ export default class CreateFriend extends Component {
     })
   }
 
+  handleSelect (evt) {
+    this.setState({
+      group: evt.target.value
+    })
+  }
+
   async handleSubmit (evt) {
     evt.preventDefault()
     try {
@@ -42,7 +49,7 @@ export default class CreateFriend extends Component {
       this.setState({
         name: '',
         phoneNumber: '',
-        // group: ''
+        group: ''
 	    })
     }
 	catch (err) {
@@ -82,13 +89,13 @@ export default class CreateFriend extends Component {
                 />
               </FormGroup>
               {' '}
-              {/* <FormGroup>
+              <FormGroup>
                 <Label for="select">Select</Label>
                 <Input 
                     type="select" 
                     name="select" 
                     id="exampleSelect"
-                    onChange={this.handleChange}>
+                    onChange={this.handleSelect}>
                 >
                   <option>High School</option>
                   <option>College</option>
@@ -96,7 +103,7 @@ export default class CreateFriend extends Component {
                   <option>Randos</option>
                   <option>Grace Hopper</option>
                 </Input>
-              </FormGroup> */}
+              </FormGroup>
               {' '}
             <Button type="submit">Add a friend</Button>
           
@@ -107,7 +114,7 @@ export default class CreateFriend extends Component {
                         return <ul key={friend.id}>
                                     <li>Name: {friend.name}</li>
                                     <li>Phone Number: {friend.phoneNumber}</li>
-                                    {/* <li>Group: {friend.group}</li> */}
+                                    <li>Group: {friend.group}</li>
                                 </ul>
                     })
                 }
