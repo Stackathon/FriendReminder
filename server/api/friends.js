@@ -16,9 +16,9 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const newFriend = await Friend.create({
-        name: req.body.name,
-        phoneNumber: req.body.phoneNumber,
-        group: req.body.group
+            name: req.body.name,
+            phoneNumber: req.body.phoneNumber,
+            group: req.body.group
         })
         res.status(201).json(newFriend)
     }
