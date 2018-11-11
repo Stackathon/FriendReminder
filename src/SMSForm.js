@@ -41,14 +41,14 @@ export default class SMSForm extends React.Component {
 
     render () {
         return (
-            <form
-            onSubmit={this.onSubmit}
-            className={this.state.error ? 'error sms-form' : 'sms-form'}
-            >
+            // <form
+            // onSubmit={this.onSubmit}
+            // className={this.state.error ? 'error sms-form' : 'sms-form'}
+            // >
                 <button type="submit" disabled={this.state.submitting}>
                     Send message
                 </button>
-            </form>
+            // </form>
         )
     }
 }

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const db = require('./db/db')
-const {Friend, FriendResponses} = require('./db')
+const {Friend, FriendResponse} = require('./db')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,6 +45,30 @@ app.post('/api/messages', (req, res) => {
     });
 })
 
+app.get('/api/friends', async (req, res, next) => {
+  try {
+    const friends = await Friend.findAll()
+    res.status(200).json(friends)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
+app.post('/api/friends', async (req, res, next) => {
+  try {
+    const newFriend = await Friend.create({
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      group: req.body.group
+    })
+    res.status(201).json(newFriend)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 app.post('/sms', (req, res, next) => {
   const twiml = new MessagingResponse();
 
@@ -60,7 +84,7 @@ app.post('/sms', (req, res, next) => {
     // msg.media('https://media.makeameme.org/created/if-you-could-fbu21e.jpg');
   }
   
-  FriendResponses.create({
+  FriendResponse.create({
     //phone: req.body.From,
     content: req.body.Body
   })
