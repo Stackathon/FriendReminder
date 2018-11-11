@@ -1,5 +1,4 @@
 const router = require('express').Router()
-
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 // POST /api/messages
@@ -25,4 +24,5 @@ router.post('/', (req, res) => {
     res.send(JSON.stringify({ success: false }));
   });
 })
-  
+
+module.exports = router

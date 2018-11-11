@@ -10,12 +10,11 @@ export default class CreateFriend extends Component {
         name: '',
         phoneNumber: '',
         group: ''
-      }
-      
-      this.addFriend = this.addFriend.bind(this)
-      this.handleChange = this.handleChange.bind(this)
-      this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleSelect = this.handleSelect.bind(this)
+	    }
+    this.addFriend = this.addFriend.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   async componentDidMount () {
@@ -50,7 +49,7 @@ export default class CreateFriend extends Component {
       this.setState({
         name: '',
         phoneNumber: '',
-        // group: ''
+        group: ''
 	    })
     }
 	catch (err) {

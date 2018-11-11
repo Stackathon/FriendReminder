@@ -43,6 +43,12 @@ app.post('/sms', (req, res, next) => {
   res.end(twiml.toString());
 });
 
+// error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(err.status || 500).send(err.message || 'Internal server error')
+})
+
 const PORT = 3001;
 db.sync()
   .then(() => {
@@ -50,3 +56,6 @@ db.sync()
     console.log('Express server is running on localhost:3001')
   );
 })
+
+
+module.exports = app
