@@ -7,13 +7,21 @@ const Friend = db.define('friend', {
     },
     phone: {
       type: Sequelize.STRING
-    },
-    content: {
-      type: Sequelize.TEXT
-    },
-  });
+    }
+});
+
+const FriendResponses = db.define('friend', {
+  content: {
+    type: Sequelize.TEXT
+  },
+});
+
+Friend.hasMany(FriendResponses)
+FriendResponses.belongsTo(Friend)
+
 
 module.exports = {
   db,
-  Friend
+  Friend,
+  FriendResponses
 }

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const db = require('./db/db')
-const {Friend} = require('./db')
+const {Friend, FriendResponses} = require('./db')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -60,8 +60,8 @@ app.post('/sms', (req, res, next) => {
     // msg.media('https://media.makeameme.org/created/if-you-could-fbu21e.jpg');
   }
   
-  Friend.create({
-    phone: req.body.From,
+  FriendResponses.create({
+    //phone: req.body.From,
     content: req.body.Body
   })
 
