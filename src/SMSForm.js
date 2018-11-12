@@ -64,7 +64,7 @@ export default class SMSForm extends React.Component {
     render () {
         return (    
             <div>
-                <label htmlFor="group">Group</label>
+                <label htmlFor="group"><strong>Hmmmm...who shall we remind today?</strong></label>{' '}
                 <select name="group" value={this.state.group} onChange={this.handleChange}>
                     <option>High School</option>
                     <option>College</option>
@@ -74,9 +74,7 @@ export default class SMSForm extends React.Component {
                 </select>
                 <br />
 
-                <button type="submit" disabled={this.state.submitting} onClick={this.onSubmit}>
-                    Send message
-                </button>
+                <Button type="submit" disabled={this.state.submitting} onClick={this.onSubmit} color="info" size="lg" block> TEXT AWAAAAY!</Button>
 
             </div>
         )

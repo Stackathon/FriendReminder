@@ -33,7 +33,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            {/* <img src={logo} className="App-logo" alt="logo" /> */}
+           {/* <img src={logo} className="App-logo" alt="logo" /> */}
             
             <h2>Friend Reminder!</h2>
             <Route exact path='/first' component={AddFriendForm} />

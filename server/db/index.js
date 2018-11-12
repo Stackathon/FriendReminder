@@ -11,6 +11,9 @@ const Friend = db.define('friend', {
     group: {
       type: Sequelize.STRING
     },
+    content: {
+      type: Sequelize.TEXT
+    },
 });
 
 const FriendResponse = db.define('friendResponse', {
