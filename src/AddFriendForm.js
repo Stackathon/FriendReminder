@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios'
 import AddFriendTable from './AddFriendTable'
 
-export default class CreateFriend extends Component {
+export default class AddFriendForm extends Component {
   constructor () {
       super()
       this.state = {
@@ -93,9 +93,10 @@ export default class CreateFriend extends Component {
                 <Label for="select">Select</Label>
                 <Input 
                     type="select" 
-                    name="select" 
+                    name="group" 
                     id="exampleSelect"
-                    onChange={this.handleSelect}>
+                    value={this.state.group}
+                    onChange={this.handleChange}>
                 >
                   <option>High School</option>
                   <option>College</option>

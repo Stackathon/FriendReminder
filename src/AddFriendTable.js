@@ -13,7 +13,6 @@ const AddFriendTable = (props) => {
         })
     return (
             <div>
-                <h2>Campus List</h2>
                     {/* {
                         campuses && campuses.map(campus => {
                             return (
