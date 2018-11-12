@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 import AddFriendTable from './AddFriendTable'
 
@@ -90,7 +91,7 @@ export default class CreateFriend extends Component {
               </FormGroup>
               {' '}
               <FormGroup>
-                <Label for="select">Select</Label>
+                <Label for="select"><strong> SELECT A GROUP </strong></Label>
                 <Input 
                     type="select" 
                     name="select" 
@@ -105,13 +106,13 @@ export default class CreateFriend extends Component {
                 </Input>
               </FormGroup>
               {' '}
-            <Button type="submit">Add a friend</Button>
+            <Button color="success" type="submit">Add a friend</Button>
           
           </Form>
               <div>
                 <AddFriendTable friends={this.state.friends}/>
-                {/* <Link to={`/campuses/${campus.id}`} onClick={() => singleCampusOnly(campus)}> {campus.name}</Link> */}
-                {/* Add Link to Categories Page */}
+                <Button tag={Link} to={`/second`} color="success" size="lg" block>Let's get to it!</Button>
+                {/* onClick={() => singleCampusOnly(campus)}> {campus.name} */}
               </div>
         </div>
     )
