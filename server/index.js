@@ -13,34 +13,45 @@ app.use(pino);
 
 app.use('/api', require('./api'))
 
-// app.get('/api/greeting', (req, res) => {
-//   const name = req.query.name || 'World';
-//   res.setHeader('Content-Type', 'application/json');
-//   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
-// });
+app.post('/sms', async (req, res, next) => {
+  try{
+    const twiml = new MessagingResponse();
 
-app.post('/sms', (req, res, next) => {
-  const twiml = new MessagingResponse();
+    if (req.body.Body === 'Y') {
+      const msg = twiml.message('Great! See you then!');
+      msg.media('https://funnymemess.com/wp-content/uploads/2018/03/97-min-6-267x300.jpg');
+    } else if (req.body.Body === 'N') {
+      const msg = twiml.message('Whatever...I never liked you anyway');
+      msg.media('https://i.pinimg.com/originals/5f/b7/f7/5fb7f71f66416c9a25a581f6b15deed0.jpg');
+    } else {
+      const msg = twiml.message('Please respond with either Y or N.');
+      msg.media('https://media.makeameme.org/created/if-you-could-fbu21e.jpg');
+    }
+    
+    //console.log("reqbody", req.body)
+    // FriendResponse.create({
+    //   //phoneNumber: req.body.From,
+    //   content: req.body.Body
+    // })
+    //res.json(content)
 
-  //twiml.message('The Robots are coming! Head for the hills!');
-  if (req.body.Body === 'Y') {
-    const msg = twiml.message('Great! See you then!');
-    // msg.media('https://funnymemess.com/wp-content/uploads/2018/03/97-min-6-267x300.jpg');
-  } else if (req.body.Body === 'N') {
-    const msg = twiml.message('Whatever...I never liked you anyway');
-    // msg.media('https://i.pinimg.com/originals/5f/b7/f7/5fb7f71f66416c9a25a581f6b15deed0.jpg');
-  } else {
-    const msg = twiml.message('Please respond with either Y or N.');
-    // msg.media('https://media.makeameme.org/created/if-you-could-fbu21e.jpg');
-  }
-  
-  Friend.create({
-    //phone: req.body.From,
-    content: req.body.Body
-  })
+    let phone = (req.body.From).slice(1)
+    let friend = await Friend.findOne({
+      where: {
+        phoneNumber: phone
+      }
+    })
+    let response = await FriendResponse.create({
+      content: req.body.Body
+    })
+    response.setFriend(friend)
+    
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
 
-  res.writeHead(200, {'Content-Type': 'text/xml'});
-  res.end(twiml.toString());
+  } catch (err) {
+		next(err)
+	}
 });
 
 // error handling middleware

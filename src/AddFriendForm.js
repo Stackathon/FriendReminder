@@ -112,8 +112,7 @@ export default class AddFriendForm extends Component {
           </Form>
               <div>
                 <AddFriendTable friends={this.state.friends}/>
-                <Button tag={Link} to={`/second`} color="success" size="lg" block>Let's get to it!</Button>
-                {/* onClick={() => singleCampusOnly(campus)}> {campus.name} */}
+                <Button tag={Link} to={`/texts`} color="success" size="lg" block>Let's get to it!</Button>
               </div>
         </div>
     )

@@ -6,7 +6,8 @@ const Friend = db.define('friend', {
       type: Sequelize.STRING
     },
     phoneNumber: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      primaryKey: true,
     },
     group: {
       type: Sequelize.STRING

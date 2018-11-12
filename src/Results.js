@@ -14,23 +14,23 @@ export default class SelectFilterWithDefaultValue extends React.Component {
   constructor (props) {
     super(props) 
     this.state = {
-        friends: []
+        responses: []
     }
   }
   async componentDidMount () {
-    const friends = await axios.get('/api/friends')
-    console.log("responsesssssss", friends.data)
+    const responses = await axios.get('/api/responses')
+    console.log("responsesssssss", responses.data)
     this.setState({
-      friends: friends.data
+      responses: responses.data
     })
   }
   render() {
-    const friends = this.state.responses
+    const responses = this.state.responses
     return (
-      <BootstrapTable data={ friends } bordered >
-          <TableHeaderColumn dataField='name' isKey={ true }>Response</TableHeaderColumn>
-          <TableHeaderColumn dataField='phone'>Phone</TableHeaderColumn>     
-          <TableHeaderColumn dataField='content'>Phone</TableHeaderColumn>     
+      <BootstrapTable data={ responses } bordered >
+          <TableHeaderColumn dataField='content' isKey={ true }>Response</TableHeaderColumn>
+          {/* <TableHeaderColumn dataField='content'>Phone</TableHeaderColumn>      */}
+          {/* <TableHeaderColumn dataField='content'>Phone</TableHeaderColumn>      */}
           {/* <TableHeaderColumn 
             dataField='response' filter={ { type: 'TextFilter', defaultValue: ' ' } }>
             Friend Responses

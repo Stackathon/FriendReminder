@@ -3,10 +3,7 @@ const {Friend, FriendResponse} = require('../db/')
 
 router.get('/', async (req, res, next) => {
 	try {
-        const responses = await FriendResponse.findAll({
-			include: [Friend]
-		})
-        console.log("responses", responses)
+        const responses = await FriendResponse.findAll()
 		res.status(200).json(responses)
 	}
 	catch (err) {

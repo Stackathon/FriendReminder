@@ -5,7 +5,6 @@ const {Friend} = require('../db/')
 router.get('/', async (req, res, next) => {
     try {
         const friends = await Friend.findAll()
-        console.log("friends", friends)
         res.status(200).json(friends)
     }
     catch (err) {

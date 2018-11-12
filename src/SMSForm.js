@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './SMSForm.css'
 
@@ -73,9 +74,7 @@ export default class SMSForm extends React.Component {
                     <option>Grace Hopper</option>
                 </select>
                 <br />
-
-                <Button type="submit" disabled={this.state.submitting} onClick={this.onSubmit} color="info" size="lg" block> TEXT AWAAAAY!</Button>
-
+                <Button tag={Link} to={`/responses`} type="submit" disabled={this.state.submitting} onClick={this.onSubmit} color="info" size="lg" block> TEXT AWAAAAY!</Button>
             </div>
         )
     }

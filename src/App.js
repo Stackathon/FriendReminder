@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import AddFriendForm from './AddFriendForm'
 import SMSForm from './SMSForm'
 import SelectFilterWithDefaultValue from './Results'
+import Navbar from './Navbar'
 
 class App extends Component {
   constructor(props) {
@@ -33,12 +34,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
+            <Navbar />
            {/* <img src={logo} className="App-logo" alt="logo" /> */}
             
             <h2>Friend Reminder!</h2>
-            <Route exact path='/first' component={AddFriendForm} />
-            <Route exact path='/second' component={SMSForm} />
-            <Route exact path='/third' component={SelectFilterWithDefaultValue} />
+            <Route exact path='/add' component={AddFriendForm} />
+            <Route exact path='/texts' component={SMSForm} />
+            <Route exact path='/responses' component={SelectFilterWithDefaultValue} />
           </header>
         </div>
       </Router>
