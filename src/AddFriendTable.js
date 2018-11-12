@@ -1,7 +1,6 @@
 import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
-
 // function deleteRow(index) {
 //     const {friends} = [...this.props.friends];
 //     friends.splice(index, 1);
@@ -25,14 +24,12 @@ const selectRowProp = {
 const AddFriendTable = (props) => {
     const {friends} = props;
     return (
-            <div>      
-                <BootstrapTable data={ friends } deleteRow={ true } selectRow={ selectRowProp } options={ options } pagination>
-                    <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-                    <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField='phoneNumber'>Phone</TableHeaderColumn>
-                    <TableHeaderColumn dataField='group' filter={ { type: 'TextFilter', delay: 1000 } }>Group</TableHeaderColumn>
-                </BootstrapTable>
-            </div>
+            <BootstrapTable data={ friends } deleteRow={ true } selectRow={ selectRowProp } options={ options } pagination>
+                <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
+                <TableHeaderColumn dataField='phoneNumber'>Phone</TableHeaderColumn>
+                <TableHeaderColumn dataField='group' filter={ { type: 'TextFilter', delay: 1000 } }>Group</TableHeaderColumn>
+            </BootstrapTable>
     )
 }
 

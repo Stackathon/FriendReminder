@@ -1,18 +1,40 @@
 import React from 'react'
+import axios from 'axios'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './SMSForm.css'
 
 export default class SMSForm extends React.Component {
     constructor (props) {
         super(props) 
         this.state = {
-            numbers: ['9177678123', '7742531193'],
+            friends: [],
+            group: '',
             submitting: false,
             error: false
         }
+
+        this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this);
     }
+
+    async componentDidMount () {
+        const friends = await axios.get('/api/friends')
+        this.setState({
+            friends: friends.data
+        })
+    }
+
+    handleChange (e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     onSubmit(event) {
         event.preventDefault();
+
+        const filteredFriends = this.state.friends.filter(friend => friend.group === this.state.group)
+        const filteredNumbers = filteredFriends.map(friend => friend.phoneNumber)
         this.setState({ 
             submitting: true 
         });
@@ -21,7 +43,7 @@ export default class SMSForm extends React.Component {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(this.state.numbers)
+          body: JSON.stringify(filteredNumbers)
         })
           .then(res => res.json())
           .then(data => {
@@ -40,15 +62,23 @@ export default class SMSForm extends React.Component {
     }
 
     render () {
-        return (
-            // <form
-            // onSubmit={this.onSubmit}
-            // className={this.state.error ? 'error sms-form' : 'sms-form'}
-            // >
-                <button type="submit" disabled={this.state.submitting}>
+        return (    
+            <div>
+                <label htmlFor="group">Group</label>
+                <select name="group" value={this.state.group} onChange={this.handleChange}>
+                    <option>High School</option>
+                    <option>College</option>
+                    <option>Frenemy</option>
+                    <option>Randos</option>
+                    <option>Grace Hopper</option>
+                </select>
+                <br />
+
+                <button type="submit" disabled={this.state.submitting} onClick={this.onSubmit}>
                     Send message
                 </button>
-            // </form>
+
+            </div>
         )
     }
 }
