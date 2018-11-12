@@ -36,12 +36,11 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar />
-           {/* <img src={logo} className="App-logo" alt="logo" /> */}
             
-            <Route path='/' component={Home} />
             <Route exact path='/add' component={AddFriendForm} />
             <Route exact path='/texts' component={SMSForm} />
             <Route exact path='/responses' component={SelectFilterWithDefaultValue} />
+            <Route exact path='/' component={Home} />
           </header>
         </div>
       </Router>
